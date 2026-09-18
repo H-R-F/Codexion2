@@ -6,7 +6,7 @@
 /*   By: hrf <hrf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 21:57:00 by coder             #+#    #+#             */
-/*   Updated: 2026/09/17 20:17:30 by hrf              ###   ########.fr       */
+/*   Updated: 2026/09/18 16:07:13 by hrf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	clean_simulation(t_simulation *sim)
 		while (i < sim->num_coders)
 		{
 			pthread_mutex_destroy(&sim->dongles[i].mutex);
-			pthread_cond_destroy(&sim->dongles[i].cond);
 			heap_free(&sim->dongles[i].queue);
 			i++;
 		}

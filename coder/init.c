@@ -6,7 +6,7 @@
 /*   By: hrf <hrf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 21:57:00 by coder             #+#    #+#             */
-/*   Updated: 2026/09/18 02:28:32 by hrf              ###   ########.fr       */
+/*   Updated: 2026/09/18 16:07:31 by hrf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parse_args(int argc, char **argv, t_simulation *sim)
 	sim->time_to_refactor = ft_atoi_positive(argv[5]);
 	sim->compiles_required = ft_atoi_positive(argv[6]);
 	sim->dongle_cooldown = ft_atoi_positive(argv[7]);
-	if (sim->num_coders <= 0 || sim->num_coders > 200)
+	if (sim->num_coders <= 0)
 		return (-1);
 	if (sim->time_to_burnout < 0 || sim->time_to_compile < 0
 		|| sim->time_to_debug < 0 || sim->time_to_refactor < 0
@@ -46,7 +46,6 @@ static void	free_dongles_partial(t_simulation *sim, int done)
 	while (i < done)
 	{
 		pthread_mutex_destroy(&sim->dongles[i].mutex);
-		pthread_cond_destroy(&sim->dongles[i].cond);
 		heap_free(&sim->dongles[i].queue);
 		i++;
 	}
@@ -68,12 +67,10 @@ static int	init_dongles(t_simulation *sim)
 		sim->dongles[i].in_use = 0;
 		sim->dongles[i].last_released_ms = 0;
 		pthread_mutex_init(&sim->dongles[i].mutex, NULL);
-		pthread_cond_init(&sim->dongles[i].cond, NULL);
 		if (heap_init(&sim->dongles[i].queue, sim->num_coders,
 				sim->scheduler) != 0)
 		{
 			pthread_mutex_destroy(&sim->dongles[i].mutex);
-			pthread_cond_destroy(&sim->dongles[i].cond);
 			free_dongles_partial(sim, i);
 			return (-1);
 		}

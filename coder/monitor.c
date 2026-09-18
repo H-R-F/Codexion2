@@ -6,7 +6,7 @@
 /*   By: hrf <hrf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 21:57:00 by aben-sab          #+#    #+#             */
-/*   Updated: 2026/09/17 20:17:30 by hrf              ###   ########.fr       */
+/*   Updated: 2026/09/18 16:06:41 by hrf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	broadcast_all_dongles(t_simulation *sim)
 	while (i < sim->num_coders)
 	{
 		pthread_mutex_lock(&sim->dongles[i].mutex);
-		pthread_cond_broadcast(&sim->dongles[i].cond);
 		pthread_mutex_unlock(&sim->dongles[i].mutex);
 		i++;
 	}

@@ -119,9 +119,7 @@ void	release_dongles(t_coder *coder)
 	coder->right_dongle->last_released_ms = now;
 	coder->left_dongle->in_use = 0;
 	coder->right_dongle->in_use = 0;
-	pthread_cond_broadcast(&d1->cond);
-	if (d2)
-		pthread_cond_broadcast(&d2->cond);
+
 	if (d2 && d2 != d1)
 		pthread_mutex_unlock(&d2->mutex);
 	pthread_mutex_unlock(&d1->mutex);

@@ -41,7 +41,7 @@ Run the program with 8 arguments:
 ```
 
 #### Arguments
-1. `number_of_coders`: Total number of coders and dongles (1 to 200).
+1. `number_of_coders`: Total number of coders and dongles.
 2. `time_to_burnout`: Time in ms before a coder burns out if they do not start compiling.
 3. `time_to_compile`: Time in ms spent compiling.
 4. `time_to_debug`: Time in ms spent debugging.

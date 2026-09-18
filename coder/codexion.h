@@ -6,7 +6,7 @@
 /*   By: hrf <hrf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 21:57:00 by coder             #+#    #+#             */
-/*   Updated: 2026/09/18 02:28:07 by hrf              ###   ########.fr       */
+/*   Updated: 2026/09/18 16:05:40 by hrf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_dongle
 	int					in_use;
 	long long			last_released_ms;
 	pthread_mutex_t		mutex;
-	pthread_cond_t		cond;
 	t_heap				queue;
 }	t_dongle;
 
